@@ -7,7 +7,6 @@
     var input = document.getElementById('search_box');
     var searchBox = new google.maps.places.SearchBox(input);
     var actual_map = map.gMap;
-    console.log(actual_map);
     var marker = [];
 
     actual_map.addListener('bounds_changed', function() {
@@ -31,6 +30,7 @@
         var bounds = new google.maps.LatLngBounds();
 
         places.forEach(function(place) {
+            console.log(place);
             var icon = {
                 url: place.icon,
                 size: new google.maps.Size(71, 71),

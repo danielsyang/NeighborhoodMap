@@ -14,10 +14,10 @@
           outer.gMap.setCenter(pos);
           outer.gMap.setZoom(15);
 
-          var marker = new google.maps.Marker({
-            position: pos,
-            map: outer.gMap
-          });
+          // var marker = new google.maps.Marker({
+          //   position: pos,
+          //   map: outer.gMap
+          // });
 
         });
       }
