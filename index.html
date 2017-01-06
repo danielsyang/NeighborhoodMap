@@ -2,6 +2,7 @@
 <html>
   <head>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" media="screen" >
+    <link rel="stylesheet" href="css/style.css" >
     <meta charset="utf-8">
     <title>NeighborhoodMap</title>
   </head>
@@ -12,11 +13,19 @@
         <h1 class="text-center">Neighborhood Locations</h1>
       </div>
       <div class="col-md-6 col-md-offset-3">
-        <input type="text" placeholder="Enter a location" data-bind="value: currentLocation, enterKey: searchLocation" class="form-control">
+        <input type="text" placeholder="Enter a location" data-bind="value: currentLocation, enterKey: searchLocation" class="form-control" id="search_box">
       </div>
     </section>
 
+    <hr>
+
+    <section id="map-canvas"></section>
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyC6P5Wq96ZswTE2DxLrcrj0B2o1FEs4nXM"></script>
     <script src="bower_components/knockout/dist/knockout.js" type="text/javascript" charset="utf-8"></script>
     <script src="app.js" charset="utf-8"></script>
+    <script src="js/map-app.js" charset="utf-8"></script>
+    <script src="js/mapster.js" charset="utf-8"></script>
+    <script src="js/googleApp.js" charset="utf-8"></script>
   </body>
 </html>

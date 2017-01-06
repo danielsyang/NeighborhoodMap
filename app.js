@@ -33,10 +33,10 @@
     var ViewModel = function() {
         this.currentLocation = ko.observable();
 
-        this.searchLocation = function() {
-            var location = this.currentLocation().trim();
-            console.log(location);
-        }.bind(this);
+        // this.searchLocation = function() {
+        //     var location = this.currentLocation().trim();
+        //     console.log(location);
+        // }.bind(this);
     };
 
     var viewModel = new ViewModel();
