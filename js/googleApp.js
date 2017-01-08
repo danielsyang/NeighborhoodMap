@@ -19,7 +19,9 @@
             return;
         }
 
-        // if (actual_map)
+        if (places.length === 1) {
+          input = places[0].formatted_address;
+        }
 
         // Clear out the old markers.
         marker.forEach(function(mk) {
@@ -57,4 +59,5 @@
         });
         actual_map.fitBounds(bounds);
     });
+    window.MyGoogleMap = map
 }(window, window.Mapster));

@@ -1,7 +1,7 @@
-(function() {
+(function(window) {
+
     'use strict';
     var ENTER_KEY = 13;
-
     function keyhandlerBindingFactory(keyCode) {
         return {
             init: function(element, valueAccessor, allBindingsAccessor, data, bindingContext) {
@@ -45,4 +45,4 @@
     ko.applyBindings(viewModel);
 
 
-})();
+})(window);
