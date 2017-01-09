@@ -2,6 +2,7 @@
 
     'use strict';
     var ENTER_KEY = 13;
+
     function keyhandlerBindingFactory(keyCode) {
         return {
             init: function(element, valueAccessor, allBindingsAccessor, data, bindingContext) {
@@ -30,13 +31,27 @@
     // a custom binding to handle the enter key
     ko.bindingHandlers.enterKey = keyhandlerBindingFactory(ENTER_KEY);
 
-    var ViewModel = function() {
+    var markers = window.Mapster.markers;
 
-        this.currentLocation = ko.observable();
+    var ViewModel = function() {
+        // var self = this;
+        this.location = ko.observable();
+
+        this.markers = ko.computed(function() {
+            var search = self.location;
+
+        });
 
         this.searchLocation = function() {
-            var location = this.currentLocation().trim();
-            console.log(location);
+            var location = this.location().trim();
+            return ko.utils.arrayFilter(markers, function(marker) {
+              console.log(location);
+
+              if (marker.title.search(location)) {
+                console.log(marker);
+              }
+                // console.log(marker.title.toLowerCase());
+            })
         }.bind(this);
     };
 

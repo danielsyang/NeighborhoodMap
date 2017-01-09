@@ -13,10 +13,10 @@
         <h1 class="text-center">Neighborhood Locations</h1>
       </div>
       <div class="col-md-6 col-md-offset-3">
-        <input type="text" placeholder="Enter a location" data-bind="value: currentLocation, enterKey: searchLocation" class="form-control" id="search_box">
+        <input type="text" placeholder="Enter a location" data-bind="value: location, enterKey: searchLocation" class="form-control" id="search_box" autocomplete="off">
       </div>
     </section>
-
+<!-- valueUpdate: 'keyup',  -->
     <hr>
 
     <section id="map-canvas"></section>
