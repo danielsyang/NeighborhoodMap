@@ -31,20 +31,19 @@
     // a custom binding to handle the enter key
     ko.bindingHandlers.enterKey = keyhandlerBindingFactory(ENTER_KEY);
 
-    var markers = window.Mapster.markers;
+    var google_markers = window.Mapster.markers;
 
     var ViewModel = function() {
         // var self = this;
         this.location = ko.observable();
 
         this.markers = ko.computed(function() {
-            var search = self.location;
-
+          return google_markers;
         });
 
         this.searchLocation = function() {
             var location = this.location().trim();
-            return ko.utils.arrayFilter(markers, function(marker) {
+            return ko.utils.arrayFilter(google_markers, function(marker) {
               console.log(location);
 
               if (marker.title.search(location)) {

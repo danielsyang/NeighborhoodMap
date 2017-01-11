@@ -8,8 +8,18 @@
   <body>
 
     <div class="search-bar">
-      <input type="text" placeholder="Enter a location and press Enter" data-bind="value: location, enterKey: searchLocation" class="form-control" id="search_box" autocomplete="off">
-    </div>
+      <div class="search-nav">
+        <input type="text" placeholder="Enter a location and press Enter" data-bind="value: location, enterKey: searchLocation" class="form-control" id="search_box" autocomplete="off">
+        <div class="scroll">
+          <ul data-bind="foreach:markers">
+            <li>
+              <p class="marker-title" data-bind="text: title"></p>
+              <p class="marker-body" data-bind="text: streetAddress"></p>
+            </li>
+          </ul>
+        </div>
+      </div>
+  </div>
     <section id="map-canvas"></section>
 
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyC6P5Wq96ZswTE2DxLrcrj0B2o1FEs4nXM"></script>
