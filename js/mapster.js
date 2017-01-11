@@ -6,7 +6,7 @@
 
         var Mapster = function(element, options) {
             this.gMap = new google.maps.Map(element, options);
-        }
+        };
 
         var markers = [{
             title: "Museum of Art of São Paulo Assis Chateaubriand",
@@ -46,6 +46,8 @@
             visible: true
         }];
 
+        var listObjMarkers = [];
+
         Mapster.prototype = {
             createMarker: function() {
                 for (var i = 0; i < markers.length; i++) {
@@ -58,6 +60,28 @@
                         title: markers[i].title
                     });
                     marker.setMap(this.gMap);
+                    listObjMarkers.push(marker);
+                }
+            },
+            deleteMarkers: function() {
+                for (var i = 0; i < listObjMarkers.length; i++) {
+                    listObjMarkers[i].setMap(null);
+                }
+            },
+            createMarkerList: function(markers) {
+              deleteMarkers();
+              console.log('lol');
+                for (var i = 0; i < markers.length; i++) {
+                    var marker = new google.maps.Marker({
+                        position: {
+                            lat: markers[i].lat,
+                            lng: markers[i].lng
+                        },
+                        map: this.gMap,
+                        title: markers[i].title
+                    });
+                    marker.setMap(this.gMap);
+                    listObjMarkers.push(marker);
                 }
             },
             listMarkers: function() {
