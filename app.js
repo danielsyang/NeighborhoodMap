@@ -34,15 +34,22 @@
     var google_markers = window.Mapster.markers;
 
     var ViewModel = function() {
-        // var self = this;
+        var self = this;
         this.location = ko.observable();
 
         this.markers = ko.computed(function() {
-          return google_markers;
+          var input_result = self.location().trim();
+          console.log(input_result);
+          return ko.utils.arrayFilter(google_markers, function(mark) {
+            if (mark.title.toLowerCase().indexOf()) {
+
+            }
+          });
         });
 
         this.searchLocation = function() {
-            var location = this.location().trim();
+            var location = self.location().trim();
+            console.log(location);
             return ko.utils.arrayFilter(google_markers, function(marker) {
               console.log(location);
 
