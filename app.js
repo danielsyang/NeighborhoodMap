@@ -30,35 +30,27 @@
 
     // a custom binding to handle the enter key
     ko.bindingHandlers.enterKey = keyhandlerBindingFactory(ENTER_KEY);
-
-    var google_markers = window.Mapster.markers;
+    var google_markers = window.map.listMarkers();
 
     var ViewModel = function() {
         var self = this;
-        this.location = ko.observable();
+        this.location = ko.observable('');
 
-        this.markers = ko.computed(function() {
-          var input_result = self.location().trim();
-          console.log(input_result);
-          return ko.utils.arrayFilter(google_markers, function(mark) {
-            if (mark.title.toLowerCase().indexOf()) {
+        this.markers = ko.dependentObservable(function() {
+            var renderMarkers = [];
+            var input_result = self.location().toLowerCase();
 
+            if (input_result !== '') {
+                for (var i = 0; i < google_markers.length; i++) {
+                    if (google_markers[i].title.toLowerCase().indexOf(input_result) >= 0) {
+                        renderMarkers.push(google_markers[i]);
+                    }
+                }
+            } else {
+                renderMarkers = google_markers;
             }
-          });
-        });
-
-        this.searchLocation = function() {
-            var location = self.location().trim();
-            console.log(location);
-            return ko.utils.arrayFilter(google_markers, function(marker) {
-              console.log(location);
-
-              if (marker.title.search(location)) {
-                console.log(marker);
-              }
-                // console.log(marker.title.toLowerCase());
-            })
-        }.bind(this);
+            return renderMarkers;
+        }, viewModel);
     };
 
     var viewModel = new ViewModel();

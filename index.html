@@ -9,7 +9,7 @@
 
     <div class="search-bar">
       <div class="search-nav">
-        <input type="text" placeholder="Enter a location and press Enter" data-bind="value: location, enterKey: searchLocation" class="form-control" id="search_box" autocomplete="off">
+        <input type="text" placeholder="Enter a location and press Enter" data-bind="value: location, valueUpdate: 'keydown'" class="form-control" id="search_box" autocomplete="off">
         <div class="scroll">
           <ul data-bind="foreach:markers">
             <li>
@@ -27,5 +27,6 @@
     <script src="js/mapster.js" charset="utf-8"></script>
     <script src="js/googleApp.js" charset="utf-8"></script>
     <script src="app.js" charset="utf-8"></script>
+    <script src="app2.js" charset="utf-8"></script>
   </body>
 </html>
