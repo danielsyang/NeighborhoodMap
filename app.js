@@ -10,8 +10,6 @@
             var renderMarkers = [];
             var input_result = self.location().toLowerCase();
 
-            console.log('quantas vezes?');
-
             if (input_result !== '') {
                 for (var i = 0; i < google_markers.length; i++) {
                     if (google_markers[i].title.toLowerCase().indexOf(input_result) >= 0) {
@@ -22,12 +20,9 @@
                 renderMarkers = google_markers;
             }
             if (renderMarkers.length !== google_markers.length) {
-                window.map.createMarkerList(renderMarkers);
+              window.map.deleteMarkers();
             }
-            // } else {
-            //     console.log('yeueu');
-            //     window.map.createMarkerList(renderMarkers);
-            // }
+            window.map.createMarkerList(renderMarkers);
             return renderMarkers;
         }, viewModel);
     };
