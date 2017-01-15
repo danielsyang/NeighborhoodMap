@@ -122,7 +122,8 @@
                     lng: -46.627078
                 };
                 this.gMap.setZoom(13);
-                this.gMap.setCenter(center);                
+                this.gMap.setCenter(center);
+                this.gMap.infoWindow.close();
             }
         };
 
