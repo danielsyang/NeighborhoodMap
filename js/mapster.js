@@ -32,25 +32,36 @@
             lat: -23.585578,
             lng: -46.609679,
             streetAddress: "Parque da Independência, São Paulo",
-            info: ''
+            info: "The Museu Paulista of the University of São Paulo (commonly known in São Paulo and all Brazil as Museu do Ipiranga) " +
+                "is a Brazilian history museum located near where Emperor Pedro I proclaimed the Brazilian independence on the banks of Ipiranga " +
+                "brook in the Southeast region of the city of São Paulo, then the 'Caminho do Mar,' or road to the seashore. " +
+                "It contains a huge collection of furniture, documents and historically relevant artwork, especially relating to the Brazilian Empire era."
         }, {
             title: "Municipal Theatre of São Paulo",
             lat: -23.545235,
             lng: -46.638615,
             streetAddress: "Praça Ramos de Azevedo, São Paulo",
-            info: ""
+            info: "Municipal Theatre of São Paulo[1] is a theatre in São Paulo, Brazil. It is regarded as one of the landmarks of the city, " +
+                "significant both for its architectural value as well as for its historical importance, having been the venue for the " +
+                "Week of Modern Art in 1922, which revolutionised the arts in Brazil. The building now houses the São Paulo Municipal Symphonic Orchestra, " +
+                "the Coral Lírico (Lyric Choir) and the City Ballet of São Paulo."
         }, {
             title: "Pinacoteca do Estado de São Paulo",
             lat: -23.534267,
             lng: -46.63395,
             streetAddress: "Praça da Luz, São Paulo",
-            info: ""
+            info: "The Pinacoteca do Estado de São Paulo is one of the most important art museums in Brazil. It is housed in a 1900 building in " +
+                "Jardim da Luz, Downtown São Paulo, designed by Ramos de Azevedo and Domiziano Rossi to be the headquarters of the Lyceum of Arts and Crafts. " +
+                "It is the oldest art museum in São Paulo, founded on December 24, 1905, and established as a state museum since 1911."
         }, {
-            title: "Parque Ibirapuera",
+            title: "Ibirapuera Park",
             lat: -23.584843,
             lng: -46.655913,
             streetAddress: "Parque Ibirapuera, São Paulo",
-            info: ""
+            info: "Ibirapuera Park is a major urban park in São Paulo, Brazil. It has a large area for leisure, jogging and walking, " +
+                "as well a vivid cultural scene with museums and a music hall. Its importance to São Paulo is often comparable to that of " +
+                "Central Park to New York City, Golden Gate Park to San Francisco, or Ueno Park to Tokyo. Ibirapuera is one of Latin America's " +
+                "largest city parks, together with Chapultepec Park in Mexico City and Simón Bolívar Park in Bogota."
         }];
 
         var listObjMarkers = new Map();
@@ -68,22 +79,22 @@
                     });
                     var _self = this;
                     marker.setMap(this.gMap);
-                    var center_point = {
-                        lat: marker.getPosition().lat(),
-                        lng: marker.getPosition().lng()
-                    };
+
+                    var infoWindow = new google.maps.InfoWindow({
+                        content: "<div class='infoView'><strong class='infoTitle'>" + markers[i].title +
+                            "</strong><hr><p class='infoInfo'>" + markers[i].info + "</p></div>"
+                    });
+
+                    marker.myInfo = infoWindow;
 
                     marker.addListener('click', function(center) {
-                        var center_pos = {
-                            lat: center.latLng.lat(),
-                            lng: center.latLng.lng()
-                        };
                         _self.gMap.setZoom(17);
-                        _self.gMap.setCenter(center_pos);
+                        _self.gMap.setCenter(center.latLng);
+                        this.myInfo.open(_self.gMap, this);
                     });
 
                     listObjMarkers.set(marker.title, marker);
-                    //criar infowindow
+
                 }
             },
             deleteMarkers: function() {
