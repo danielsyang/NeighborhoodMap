@@ -41,7 +41,7 @@
             lat: -23.545235,
             lng: -46.638615,
             streetAddress: "Praça Ramos de Azevedo, São Paulo",
-            info: "Municipal Theatre of São Paulo[1] is a theatre in São Paulo, Brazil. It is regarded as one of the landmarks of the city, " +
+            info: "Municipal Theatre of São Paulo is a theatre in São Paulo, Brazil. It is regarded as one of the landmarks of the city, " +
                 "significant both for its architectural value as well as for its historical importance, having been the venue for the " +
                 "Week of Modern Art in 1922, which revolutionised the arts in Brazil. The building now houses the São Paulo Municipal Symphonic Orchestra, " +
                 "the Coral Lírico (Lyric Choir) and the City Ballet of São Paulo."
@@ -68,6 +68,7 @@
 
         Mapster.prototype = {
             createMarker: function() {
+                this.gMap.infoWindow = new google.maps.InfoWindow();
                 for (var i = 0; i < markers.length; i++) {
                     var marker = new google.maps.Marker({
                         position: {
@@ -75,27 +76,25 @@
                             lng: markers[i].lng
                         },
                         map: this.gMap,
-                        title: markers[i].title
+                        title: markers[i].title,
+                        info: markers[i].info
                     });
                     var _self = this;
                     marker.setMap(this.gMap);
 
-                    var infoWindow = new google.maps.InfoWindow({
-                        content: "<div class='infoView' id='inf'><strong class='infoTitle'>" + markers[i].title +
-                            "</strong><hr><p class='infoInfo'>" + markers[i].info + "</p></div>"
-                    });
-
-                    marker.myInfo = infoWindow;
-
                     marker.addListener('click', function(center) {
 
-                        var showInfo = document.getElementById('inf')
-                        if (showInfo !== null) {
-                            showInfo.parentNode.parentNode.parentNode.parentNode.remove();
+                        if (_self.gMap.infoWindow.content !== undefined) {
+                            _self.gMap.infoWindow.close();
                         }
+                        _self.gMap.infoWindow = new google.maps.InfoWindow({
+                            content: "<div class='infoView' id='inf'><strong class='infoTitle'>" + this.title +
+                                "</strong><hr><p class='infoInfo'>" + this.info + "</p></div>"
+                        });
+
                         _self.gMap.setZoom(17);
                         _self.gMap.setCenter(center.latLng);
-                        this.myInfo.open(_self.gMap, this);
+                        _self.gMap.infoWindow.open(_self.gMap, this);
 
                     });
 
@@ -123,11 +122,7 @@
                     lng: -46.627078
                 };
                 this.gMap.setZoom(13);
-                this.gMap.setCenter(center);
-                var showInfo = document.getElementById('inf')
-                if (showInfo !== null) {
-                    showInfo.parentNode.parentNode.parentNode.parentNode.remove();
-                }
+                this.gMap.setCenter(center);                
             }
         };
 
