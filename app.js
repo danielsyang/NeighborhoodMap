@@ -36,11 +36,11 @@
     ko.applyBindings(viewModel);
 
     //weather API Here
-    var weatherUrl = "http://api.apixu.com/v1/current.json?key=7cf63c0a2b0e487f838164529171501&q=Sao%20Paulo";
+    var weatherUrl = "https://api.apixu.com/v1/current.json?key=7cf63c0a2b0e487f838164529171501&q=Sao%20Paulo";
     $.getJSON(weatherUrl, function(data) {
         console.log(data);
         var weatherBox = $('#weather')
-        var toAppend = "<h4>" + data.location.name + "</h4><p><strong>TODAY</strong>: " + data.location.localtime + "   || <strong>TEMP</strong>:" + data.current.feelslike_c + "°C</p>"
+        var toAppend = "<h4>" + data.location.name + "</h4><p><strong>TODAY</strong>: " + data.location.localtime + "     || <strong>TEMP</strong>:" + data.current.feelslike_c + "°C</p>"
         weatherBox.append(toAppend);
     });
 
