@@ -1,8 +1,8 @@
 (function(window, mapster, google) {
-    var options = mapster.MAP_OPTIONS;
-    element = document.getElementById('map-canvas');
+    var options = mapster.MAP_OPTIONS;    
+    element = $('#map-canvas');
 
-    map = mapster.create(element, options);
+    map = mapster.create(element[0], options);
     map.createMarker();
 
 }(window, window.Mapster, google));

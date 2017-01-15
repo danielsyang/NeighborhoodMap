@@ -72,7 +72,6 @@ hr {
 }
 
 #reset {
-    float: center;
     height: 75px;
     width: 75px;
     float: right;
@@ -83,4 +82,20 @@ hr {
     font-size: 14px;
     color: black;
     outline: none;
+}
+
+#reset:hover {
+    cursor: pointer;
+}
+
+#weather {
+    height: 75px;
+    width: 400px;
+    margin: 0 10px 15px 0;
+    border: solid white 2px;
+    opacity: 0.7;
+    font-size: 14px;
+    color: black;
+    outline: none;
+    text-align: left;
 }
