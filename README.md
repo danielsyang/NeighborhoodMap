@@ -1,6 +1,7 @@
 # NeighborhoodMap
 This project if the sixth project from the Full Stack Web Development Nanonegree.
-You can open the project here: http://dsbotta.github.io/Neighborhood-Map
+
+You can open the project here: https://shuminyang.github.io/NeighborhoodMap/
 
 If you want to run this project locally just clone this repository and then run the index.html.
 Every javascript library that you need will be available in js/vendor.
