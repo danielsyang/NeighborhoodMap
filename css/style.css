@@ -62,3 +62,25 @@ hr {
     text-align: center;
     font-size: 15px;
 }
+
+.reset-container {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    bottom: 0;
+    float: middle;
+}
+
+#reset {
+    float: center;
+    height: 75px;
+    width: 75px;
+    float: right;
+    margin: 0 10px 15px 0;
+    border: solid white 2px;
+    background-color: #a9a398;
+    opacity: 0.7;
+    font-size: 14px;
+    color: black;
+    outline: none;
+}

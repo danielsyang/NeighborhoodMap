@@ -81,16 +81,22 @@
                     marker.setMap(this.gMap);
 
                     var infoWindow = new google.maps.InfoWindow({
-                        content: "<div class='infoView'><strong class='infoTitle'>" + markers[i].title +
+                        content: "<div class='infoView' id='inf'><strong class='infoTitle'>" + markers[i].title +
                             "</strong><hr><p class='infoInfo'>" + markers[i].info + "</p></div>"
                     });
 
                     marker.myInfo = infoWindow;
 
                     marker.addListener('click', function(center) {
+
+                        var showInfo = document.getElementById('inf')
+                        if (showInfo !== null) {
+                            showInfo.parentNode.parentNode.parentNode.parentNode.remove();
+                        }
                         _self.gMap.setZoom(17);
                         _self.gMap.setCenter(center.latLng);
                         this.myInfo.open(_self.gMap, this);
+
                     });
 
                     listObjMarkers.set(marker.title, marker);
@@ -110,6 +116,18 @@
             },
             listMarkers: function() {
                 return markers
+            },
+            reset: function() {
+                var center = {
+                    lat: -23.564005,
+                    lng: -46.627078
+                };
+                this.gMap.setZoom(13);
+                this.gMap.setCenter(center);
+                var showInfo = document.getElementById('inf')
+                if (showInfo !== null) {
+                    showInfo.parentNode.parentNode.parentNode.parentNode.remove();
+                }
             }
         };
 

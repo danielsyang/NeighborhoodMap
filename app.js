@@ -1,9 +1,14 @@
 (function(window) {
-    // a custom binding to handle the enter key
+
     var google_markers = window.map.listMarkers();
 
     var ViewModel = function() {
         var self = this;
+
+        resetMap = function() {
+            window.map.reset();
+        };
+
         this.location = ko.observable('');
 
         this.markers = ko.dependentObservable(function() {
@@ -20,7 +25,7 @@
                 renderMarkers = google_markers;
             }
             if (renderMarkers.length !== google_markers.length) {
-              window.map.deleteMarkers();
+                window.map.deleteMarkers();
             }
             window.map.createMarkerList(renderMarkers);
             return renderMarkers;
