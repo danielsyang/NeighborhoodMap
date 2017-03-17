@@ -9,10 +9,10 @@
 
     <div class="search-bar">
       <div class="search-nav">
-        <input type="text" placeholder="Enter a location and press Enter" data-bind="value: query, valueUpdate: 'keyup'" class="form-control" id="search_box" autocomplete="off">
-        <div class="scroll">
-          <ul data-bind="foreach:markers">
-            <li>
+        <input type="text" placeholder="Enter a location" data-bind="value: query, valueUpdate: 'keyup'" class="form-control" id="search_box" autocomplete="off">
+        <div class="scroll" >
+          <ul data-bind="foreach: markers">
+            <li data-bind="click: $parent.clickLocation">
               <p class="marker-title" data-bind="text: title"></p>
               <p class="marker-body" data-bind="text: streetAddress"></p>
             </li>

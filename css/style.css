@@ -17,10 +17,19 @@ hr {
     border: 1px solid #e8acac;
 }
 
+li {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+li:hover {
+    background-color: orange;
+    cursor: pointer;
+}
+
 .marker-title {
     font-size: large;
     font-weight: bold;
-    margin-top: 15px;
     color: #6c6c71;
 }
 

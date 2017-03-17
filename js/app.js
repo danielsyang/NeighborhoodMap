@@ -123,26 +123,6 @@ function initMarker(locations) {
 
 function createInfoWindow(marker, infoWindow) {
 
-  function getStreetView(data, status) {
-    if (status == google.maps.StreetViewStatus.OK) {
-
-      var nearStreetViewLocation = data.location.latLng;
-
-      var heading = google.maps.geometry.spherical.computeHeading(
-        nearStreetViewLocation, marker.position);
-      var panoramaOptions = {
-        position: nearStreetViewLocation,
-        pov: {
-          heading: heading,
-          pitch: 30
-        }
-      };
-
-      var panorama = new google.maps.StreetViewPanorama($('#pano')[0], panoramaOptions);
-      console.log(panorama);
-    }
-  }
-
   if (infoWindow.marker !== marker) {
 
     infoWindow.marker = marker;
@@ -151,11 +131,13 @@ function createInfoWindow(marker, infoWindow) {
 
     infoWindow.addListener('closeClick', function() {
       infoWindow.setMarker(null);
-    });
-
-    // streetViewService.getPanoramaByLocation(marker.position, radius, getStreetView);
+    });    
 
   }
+}
+
+function openInfoView() {
+  
 }
 
 var viewModel = {};
@@ -184,5 +166,13 @@ viewModel.markers = ko.dependentObservable(function() {
   });
 
 }, viewModel);
+
+viewModel.clickLocation = function() {
+  console.log(this);
+
+  var markLocation = {lat: this.lat, lng: this.lng};
+  this.googleMarker.map.setCenter(markLocation);
+  this.googleMarker.map.setZoom(20);
+};
 
 ko.applyBindings(viewModel);
