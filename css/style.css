@@ -27,6 +27,21 @@ li:hover {
     cursor: pointer;
 }
 
+p.just {
+    text-align: justify;
+
+}
+
+p.center { 
+    text-align: center;
+    font-size: 1.1em;
+}
+
+p.center-small {
+    text-align: center;
+    font-size: 0.8em;
+}
+
 .marker-title {
     font-size: large;
     font-weight: bold;
@@ -110,4 +125,9 @@ li:hover {
     color: black;
     outline: none;
     text-align: left;
+}
+
+.img_desc {
+    display: block;
+    margin: 0 auto;
 }

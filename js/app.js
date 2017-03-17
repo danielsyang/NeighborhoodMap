@@ -115,7 +115,8 @@ function initMarker(locations) {
       streetAddress: locations[i].streetAddress,
       animation: google.maps.Animation.DROP,
       info: locations[i].info,
-      id: i
+      id: i,
+      img_info: locations[i].img_info
     });
 
     marker.addListener('click', function() {
@@ -132,9 +133,14 @@ function initMarker(locations) {
 function createInfoWindow(marker, infoWindow) {
 
   if (infoWindow.marker !== marker) {
+    console.log(marker);
 
     infoWindow.marker = marker;
-    infoWindow.setContent('<div>' + marker.info + '</div><div id="pano"></div>');
+    infoWindow.setContent('<img class="img_desc" src="' + imageApi + marker.position.lat() + ',' + marker.position.lng() + marker.img_info + '">' 
+      + '<hr>' 
+      + '<strong><p class="center">' + marker.title + '</p></strong>'
+      + '<p class="center-small">' + marker.streetAddress + '</p>'
+      + '<p class="just">' + marker.info + '</p>');
     infoWindow.open(map, marker);
 
     infoWindow.addListener('closeClick', function() {
