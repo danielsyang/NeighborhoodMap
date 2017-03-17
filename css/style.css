@@ -91,10 +91,13 @@ li:hover {
     font-size: 14px;
     color: black;
     outline: none;
+    border-radius: 50%;
 }
 
 #reset:hover {
     cursor: pointer;
+    background-color: black;
+    color: white;
 }
 
 #weather {
