@@ -136,8 +136,8 @@ function createInfoWindow(marker, infoWindow) {
   }
 }
 
-function openInfoView() {
-  
+function openInfoView(marker) {
+  marker.open();
 }
 
 var viewModel = {};
@@ -173,6 +173,8 @@ viewModel.clickLocation = function() {
   var markLocation = {lat: this.lat, lng: this.lng};
   this.googleMarker.map.setCenter(markLocation);
   this.googleMarker.map.setZoom(20);
+
+  openInfoView(this.googleMarker);
 };
 
 ko.applyBindings(viewModel);
