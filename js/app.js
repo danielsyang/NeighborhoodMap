@@ -136,10 +136,6 @@ function createInfoWindow(marker, infoWindow) {
   }
 }
 
-function openInfoView(marker) {
-  marker.open();
-}
-
 var viewModel = {};
 
 viewModel.query = ko.observable('');
@@ -170,11 +166,10 @@ viewModel.markers = ko.dependentObservable(function() {
 viewModel.clickLocation = function() {
   console.log(this);
 
-  var markLocation = {lat: this.lat, lng: this.lng};
-  this.googleMarker.map.setCenter(markLocation);
+  this.googleMarker.map.setCenter(this.googleMarker.position);
   this.googleMarker.map.setZoom(20);
 
-  openInfoView(this.googleMarker);
+  createInfoWindow(this.googleMarker, infoWind);
 };
 
 ko.applyBindings(viewModel);
