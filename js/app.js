@@ -110,6 +110,8 @@ function initMap() {
 }
 
 function initMarker(locations) {
+  var defaultIcon = makeMarkerIcon('0091ff');
+  var highlightedIcon = makeMarkerIcon('FFFF24');
   for (var i = 0; i < locations.length; i++) {
     var title = locations[i].title;
     var coordinates = {
@@ -125,12 +127,23 @@ function initMarker(locations) {
       animation: google.maps.Animation.DROP,
       info: locations[i].info,
       id: i,
+      icon: defaultIcon,
       img_info: locations[i].img_info
     });
 
     marker.addListener('click', function() {
       createInfoWindow(this, infoWind);
+      this.setIcon(highlightedIcon);
     });
+    
+    marker.addListener('mouseover', function() {
+      this.setIcon(highlightedIcon);
+    });
+
+    marker.addListener('mouseout', function() {
+      this.setIcon(defaultIcon);
+    });
+
     markers.push(marker);
     bounds.extend(marker.position);
 
@@ -139,7 +152,21 @@ function initMarker(locations) {
 
 }
 
+function makeMarkerIcon(color) {
+  var markerImage = new google.maps.MarkerImage(
+          'http://chart.googleapis.com/chart?chst=d_map_spin&chld=1.15|0|'+ color +
+          '|40|_|%E2%80%A2',
+          new google.maps.Size(21, 34),
+          new google.maps.Point(0, 0),
+          new google.maps.Point(0, 0),
+          new google.maps.Size(21,34));
+
+  return markerImage;
+}
+
 function createInfoWindow(marker, infoWindow) {
+  var defaultIcon = makeMarkerIcon('0091ff');
+  var highlightedIcon = makeMarkerIcon('FFFF24');
 
   if (infoWindow.marker !== marker) {
 
@@ -150,10 +177,12 @@ function createInfoWindow(marker, infoWindow) {
       + '<p class="center-small">' + marker.streetAddress + '</p>'
       + '<p class="just">' + marker.info + '</p>');
     infoWindow.open(map, marker);
+    marker.setIcon(highlightedIcon);
 
     infoWindow.addListener('closeClick', function() {
       infoWindow.setMarker(null);
-    });    
+      marker.setIcon(defaultIcon);
+    });
 
   }
 }

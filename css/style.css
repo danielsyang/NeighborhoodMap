@@ -97,6 +97,7 @@ p.center-small {
 
 .weather-small {
     width: 30px;
+    min-height: 96px;
     float: right;    
     border: solid white 2px;
     background-color: #a9a398;
