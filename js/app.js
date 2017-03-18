@@ -8,6 +8,9 @@ var streetViewService;
 var radius = 50;
 
 var imageApi = "https://maps.googleapis.com/maps/api/streetview?size=300x150&location=";
+var weatherUrl = "https://api.apixu.com/v1/current.json?key=7cf63c0a2b0e487f838164529171501&q=Sao%20Paulo";
+
+var w = false;
 
 var locations = [{
     title: "Museum of Art of São Paulo Assis Chateaubriand",
@@ -98,6 +101,12 @@ function initMap() {
 
   map = new google.maps.Map(element[0], options);
   initMarker(locations);
+
+  if (w === false) {
+    loadWeather();
+    w = true;
+  }
+  
 }
 
 function initMarker(locations) {
@@ -133,7 +142,6 @@ function initMarker(locations) {
 function createInfoWindow(marker, infoWindow) {
 
   if (infoWindow.marker !== marker) {
-    console.log(marker);
 
     infoWindow.marker = marker;
     infoWindow.setContent('<img class="img_desc" src="' + imageApi + marker.position.lat() + ',' + marker.position.lng() + marker.img_info + '">' 
@@ -148,6 +156,25 @@ function createInfoWindow(marker, infoWindow) {
     });    
 
   }
+}
+
+function loadWeather() {
+
+  $.getJSON(weatherUrl, function(data) {
+
+    console.log(data);
+    var weatherBlock = $('#weatherBlock');
+    var title = '<h4 class="weatherTitle">' + data.location.name + ' Weather Forecast</h4>';
+    var body = '<div class="weatherBody_text"><p>Temp: ' + data.current.feelslike_c + '°C</p>' +
+      '<p>Humidity: '+ data.current.humidity + ' %</p></div>';
+
+    var body_img = '<div class="weatherBody_img"><p>Condition: </p><img src="http:' + data.current.condition.icon + '" class="weather_img"/></div>'
+    
+    weatherBlock.append(title);
+    weatherBlock.append(body);
+    weatherBlock.append(body_img);
+  }); 
+
 }
 
 var viewModel = {};
@@ -187,6 +214,20 @@ viewModel.clickLocation = function() {
 
 viewModel.resetMap = function() {  
   initMap();
+};
+
+viewModel.showWeather = function() {
+  var weatherBlock = $('#weatherBlock');
+  var icon = $('#weather');
+
+  if (icon[0].innerText === '<<') {
+    icon.text('>>');
+    weatherBlock.show();
+  } else {
+    icon.text('<<')
+    weatherBlock.hide();
+  }
+
 };
 
 ko.applyBindings(viewModel);
