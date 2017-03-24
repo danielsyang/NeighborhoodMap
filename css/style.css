@@ -139,7 +139,7 @@ p.center-small {
     color: white;
 }
 
-.weather:hover {
+#weather:hover {
     background-color: orange;
     cursor: pointer;    
 }

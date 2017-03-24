@@ -197,8 +197,9 @@ function loadWeather() {
 }
 
 viewModel.query = ko.observable('');
-
 viewModel.weather = ko.observable();
+viewModel.showWeatherBlock = ko.observable(true);
+viewModel.weatherText = ko.observable('<<');
 
 viewModel.markers = ko.dependentObservable(function () {
   var self = this;
@@ -224,7 +225,6 @@ viewModel.markers = ko.dependentObservable(function () {
 }, viewModel);
 
 viewModel.clickLocation = function () {
-
   this.googleMarker.map.setCenter(this.googleMarker.position);
   this.googleMarker.map.setZoom(20);
 
@@ -236,15 +236,14 @@ viewModel.resetMap = function () {
 };
 
 viewModel.showWeather = function () {
-  var weatherBlock = $('#weatherBlock');
-  var icon = $('#weather');
+  // var weatherBlock = $('#weatherBlock');  
 
-  if (icon[0].innerText === '<<') {
-    icon.text('>>');
-    weatherBlock.show();
+  if (viewModel.weatherText() === '<<') {
+    viewModel.weatherText('>>');
+    viewModel.showWeatherBlock(true);
   } else {
-    icon.text('<<')
-    weatherBlock.hide();
+    viewModel.weatherText('<<');
+    viewModel.showWeatherBlock(false)
   }
 
 };
