@@ -15,6 +15,8 @@ var w = false;
 var defaultIcon;
 var highlightedIcon;
 
+var viewModel = {};
+
 var locations = [{
   title: "Museum of Art of São Paulo Assis Chateaubriand",
   lat: -23.5615226,
@@ -102,8 +104,10 @@ function initMap() {
     w = true;
   }
 
+}
 
-
+function myerrorhandler() {
+  console.log('hahaha');
 }
 
 function initMarker(locations) {
@@ -166,10 +170,11 @@ function createInfoWindow(marker, infoWindow) {
       + '<strong><p class="center">' + marker.title + '</p></strong>'
       + '<p class="center-small">' + marker.streetAddress + '</p>'
       + '<p class="just">' + marker.info + '</p>');
-    infoWindow.open(map, marker);        
+    infoWindow.open(map, marker);
+    marker.setIcon(highlightedIcon);
 
-    infoWindow.addListener('closeclick', function () {      
-      marker.setIcon(defaultIcon);   
+    infoWindow.addListener('closeclick', function () {
+      marker.setIcon(defaultIcon);
     });
 
   } else {
@@ -180,23 +185,20 @@ function createInfoWindow(marker, infoWindow) {
 function loadWeather() {
 
   $.getJSON(weatherUrl, function (data) {
-    var weatherBlock = $('#weatherBlock');
     var title = '<h4 class="weatherTitle">' + data.location.name + ' Weather Forecast</h4>';
     var body = '<div class="weatherBody_text"><p>Temp: ' + data.current.feelslike_c + '°C</p>' +
       '<p>Humidity: ' + data.current.humidity + ' %</p></div>';
 
-    var body_img = '<div class="weatherBody_img"><p>Condition: </p><img src="http:' + data.current.condition.icon + '" class="weather_img"/></div>'
-
-    weatherBlock.append(title);
-    weatherBlock.append(body);
-    weatherBlock.append(body_img);
+    var body_img = '<div class="weatherBody_img"><p>Condition: </p><img src="http:' + data.current.condition.icon + '" class="weather_img"/></div>';
+    var full = title + body + body_img;
+    viewModel.weather(full);
   });
 
 }
 
-var viewModel = {};
-
 viewModel.query = ko.observable('');
+
+viewModel.weather = ko.observable();
 
 viewModel.markers = ko.dependentObservable(function () {
   var self = this;

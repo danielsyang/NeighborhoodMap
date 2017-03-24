@@ -1,44 +1,49 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="css/style.css" >
-    <link rel="stylesheet" href="css/responsive.css" >
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>NeighborhoodMap</title>
-  </head>
-  <body>
 
-    <div class="search-bar">
-      <div class="search-nav">
-        <input type="text" placeholder="Enter a location" data-bind="value: query, valueUpdate: 'keyup'" class="form-control" id="search_box" autocomplete="off">
-        <div class="scroll" >
-          <ul data-bind="foreach: markers">
-            <li data-bind="click: $parent.clickLocation">
-              <p class="marker-title" data-bind="text: title"></p>
-              <p class="marker-body" data-bind="text: streetAddress"></p>
-            </li>
-          </ul>
-        </div>
+<head>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NeighborhoodMap</title>
+</head>
+
+<body>
+
+  <div class="search-bar">
+    <div class="search-nav">
+      <input type="text" placeholder="Enter a location" data-bind="value: query, valueUpdate: 'keyup'" class="form-control search_box"
+        autocomplete="off">
+      <div class="scroll">
+        <ul data-bind="foreach: markers">
+          <li data-bind="click: $parent.clickLocation">
+            <p class="marker-title" data-bind="text: title"></p>
+            <p class="marker-body" data-bind="text: streetAddress"></p>
+          </li>
+        </ul>
       </div>
     </div>
-    <section id="map-canvas"></section>
+  </div>
+  <section id="map-canvas" class="map-canvas"></section>
 
-     <div class="weather-container">
-       <div id="weatherBlock" class="weather-big"></div>
-      <button id="weather" class="weather-small" data-bind="click: showWeather"><<</button>
-    </div> 
+  <div class="weather-container">
+    <div id="weatherBlock" class="weather-big" data-bind="html: weather"></div>
+    <button id="weather" class="weather-small" data-bind="click: showWeather" class="weather">&lt;&lt;</button>
+  </div>
 
-     <div class="reset-container">        
-        <button id="reset" data-bind="click: resetMap">Reset Map Zoom</button>
-    </div> 
+  <div class="reset-container">
+    <button id="reset" data-bind="click: resetMap" class="reset">Reset Map Zoom</button>
+  </div>
 
-    <script src="js/vendor/jquery-3.1.1.min.js" type="text/javascript"></script>
-    <script src="js/vendor/knockout-3.4.1.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/vendor/jquery-3.1.1.min.js"></script>
+  <script src="js/vendor/knockout-3.4.1.js"></script>
 
-    <script src="js/app.js" charset="utf-8"></script>
+  <script src="js/app.js" charset="utf-8"></script>
 
-    <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyCiQ6jRKmmMkwzJ7jPckecvPerXT4cXfxg&v=3&callback=initMap" type="text/javascript" ></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyCiQ6jRKmmMkwzJ7jPckecvPerXT4cXfxg&v=3&callback=initMap"
+    onerror="myerrorhandler()"></script>
 
-  </body>
+</body>
+
 </html>

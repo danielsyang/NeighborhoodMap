@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
     position: absolute;
     height: 100%;
     width: 100%;
@@ -7,9 +8,9 @@ html, body {
 
 ul {
     list-style-type: none;
-}
 
 p {
+}
     margin: 0;
 }
 
@@ -48,7 +49,7 @@ p.center-small {
     color: #6c6c71;
 }
 
-#map-canvas {
+.map-canvas {
     position: absolute;
     height: 100%;
     width: 100%;
@@ -62,7 +63,7 @@ p.center-small {
 .search-nav {
     width: 380px;
     max-height: 550px;
-    background-color: rgba(256, 256, 256, .7);
+    background-color: rgba(255, 255, 255, 0.7);
     overflow: hidden;
     border: 2px solid gray;
 }
@@ -73,7 +74,7 @@ p.center-small {
     margin: 0 5px;
 }
 
-#search_box {
+.search_box {
     margin-left: 3.3em;
     margin-top: 2em;
     width: 250px;
@@ -122,7 +123,7 @@ p.center-small {
     display: none;
 }
 
-#reset {
+.reset {
     height: 75px;
     width: 75px;
     float: right;
@@ -142,7 +143,7 @@ p.center-small {
     color: white;
 }
 
-#weather:hover {
+.weather:hover {
     background-color: orange;
     cursor: pointer;    
 }
