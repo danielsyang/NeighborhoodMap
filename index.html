@@ -12,26 +12,34 @@
 <body>
 
   <div class="search-bar">
-    <div class="search-nav">
-      <input type="text" placeholder="Enter a location" data-bind="value: query, valueUpdate: 'keyup'" class="form-control search_box"
-        autocomplete="off">
-      <div class="scroll">
-        <ul data-bind="foreach: markers">
-          <li data-bind="click: $parent.clickLocation">
-            <p class="marker-title" data-bind="text: title"></p>
-            <p class="marker-body" data-bind="text: streetAddress"></p>
-          </li>
-        </ul>
+
+    <div class="mob" data-bind="visible: showPlaces">
+      <div class="search-nav">
+        <input type="text" placeholder="Enter a location" data-bind="value: query, valueUpdate: 'keyup'" class="form-control search_box"
+          autocomplete="off">
+
+        <div class="scroll">
+          <ul data-bind="foreach: markers">
+            <li data-bind="click: $parent.clickLocation">
+              <p class="marker-title" data-bind="text: title"></p>
+              <p class="marker-body" data-bind="text: streetAddress"></p>
+            </li>
+          </ul>
+        </div>
+
       </div>
     </div>
+
+    <button id="hide" class="mobile_button" data-bind="click: hideListBLock, text: hideList"></button>
   </div>
+
+
   <section id="map-canvas" class="map-canvas"></section>
 
   <div class="weather-container">
 
     <div id="weatherBlock" data-bind="visible: showWeatherBlock,html: weather" class="weather-big">
     </div>
-    
     <button id="weather" class="weather-small" data-bind="click: showWeather, text: weatherText"></button>
   </div>
 
@@ -45,7 +53,7 @@
   <script src="js/app.js" charset="utf-8"></script>
 
   <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyCiQ6jRKmmMkwzJ7jPckecvPerXT4cXfxg&v=3&callback=initMap"
-    onerror="myerrorhandler()"></script>        
+    onerror="myerrorhandler()"></script>
 
 </body>
 

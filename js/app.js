@@ -146,7 +146,7 @@ function initMarker(locations) {
     });
 
     marker.addListener('mouseout', function () {
-      if (infoWind.map === undefined) {
+      if (infoWind.map === null || infoWind.map === undefined ) {
         this.setIcon(defaultIcon);
       }
     });
@@ -262,6 +262,9 @@ function loadWeather() {
 viewModel.query = ko.observable('');
 viewModel.weather = ko.observable();
 viewModel.weatherText = ko.observable('<<');
+viewModel.hideList = ko.observable('<<');
+viewModel.showPlaces = ko.observable(true);
+viewModel.showWeatherBlock = ko.observable(false);
 
 viewModel.markers = ko.dependentObservable(function () {
   var self = this;
@@ -296,7 +299,7 @@ viewModel.clickLocation = function () {
 viewModel.resetMap = function () {
   initMap();
 };
-viewModel.showWeatherBlock = ko.observable(false);
+
 viewModel.showWeather = function () {
 
   if (viewModel.weatherText() === '<<') {
@@ -305,6 +308,18 @@ viewModel.showWeather = function () {
   } else {
     viewModel.weatherText('<<');
     viewModel.showWeatherBlock(false)
+  }
+
+};
+
+viewModel.hideListBLock = function() {  
+
+  if (viewModel.hideList() === '<<') {
+    viewModel.hideList('>>');
+    viewModel.showPlaces(false);
+  } else {
+    viewModel.hideList('<<');
+    viewModel.showPlaces(true);
   }
 
 };
