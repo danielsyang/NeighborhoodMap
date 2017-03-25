@@ -185,15 +185,15 @@ function loadFoursquare(coordinates, marker) {
       }
 
       if (data.response.venues[i].contact.facebook !== undefined && marker.facebook === undefined) {
-        marker.facebook = data.response.venues[i].contact.facebook;        
+        marker.facebook = data.response.venues[i].contact.facebook;
       }
 
       if (data.response.venues[i].contact.twitter !== undefined && marker.twitter === undefined) {
-        marker.twitter = data.response.venues[i].contact.twitter;        
+        marker.twitter = data.response.venues[i].contact.twitter;
       }
 
       if (marker.url !== undefined && marker.facebook !== undefined && marker.twitter !== undefined) {
-        full = true;        
+        full = true;
       }
 
       i++;
@@ -205,11 +205,11 @@ function loadFoursquare(coordinates, marker) {
         dataimg.response.photos.items[0].suffix;
 
       marker.img = u;
-    }).fail(function(error) {
+    }).fail(function (error) {
       alert('FourSquare images failed to load! Error: ' + error);
     });
-  }).fail(function(error){
-    alert('FourSquare failed to load! Error: ' + error);    
+  }).fail(function (error) {
+    alert('FourSquare failed to load! Error: ' + error);
   });
 }
 
