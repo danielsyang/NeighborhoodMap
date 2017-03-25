@@ -180,15 +180,15 @@ function loadFoursquare(coordinates, marker) {
     var full = false;
 
     while (i < data.response.venues.length && full === false) {
-      if (data.response.venues[i].url !== undefined) {
+      if (data.response.venues[i].url !== undefined && marker.url === undefined) {
         marker.url = data.response.venues[i].url;
       }
 
-      if (data.response.venues[i].contact.facebook !== undefined) {
+      if (data.response.venues[i].contact.facebook !== undefined && marker.facebook === undefined) {
         marker.facebook = data.response.venues[i].contact.facebook;        
       }
 
-      if (data.response.venues[i].contact.twitter !== undefined) {
+      if (data.response.venues[i].contact.twitter !== undefined && marker.twitter === undefined) {
         marker.twitter = data.response.venues[i].contact.twitter;        
       }
 
@@ -205,7 +205,11 @@ function loadFoursquare(coordinates, marker) {
         dataimg.response.photos.items[0].suffix;
 
       marker.img = u;
+    }).fail(function(error) {
+      alert('FourSquare images failed to load! Error: ' + error);
     });
+  }).fail(function(error){
+    alert('FourSquare failed to load! Error: ' + error);    
   });
 }
 
@@ -248,8 +252,8 @@ function loadWeather() {
     var body_img = '<div class="weatherBody_img"><p>Condition: </p><img src="http:' + data.current.condition.icon + '" class="weather_img"/></div>';
     var full = title + body + body_img;
     viewModel.weather(full);
-  }).fail(function () {
-    console.log('hahaha');
+  }).fail(function (error) {
+    alert('APIXU Weather failed to load! Error: ' + error);
   });
 
 }
