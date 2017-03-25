@@ -1,3 +1,4 @@
+(function() {
 'use strict';
 
 var map;
@@ -113,7 +114,7 @@ function initMap() {
 }
 
 function myerrorhandler() {
-  console.log('hahaha');
+  alert("Google Maps API couldn't be loaded!");
 }
 
 function initMarker(locations) {
@@ -309,3 +310,5 @@ viewModel.showWeather = function () {
 };
 
 ko.applyBindings(viewModel);
+  
+}());
