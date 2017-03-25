@@ -176,15 +176,32 @@ function loadFoursquare(coordinates, marker) {
   $.getJSON(totalFoursquare, function (data) {
     var f_id = data.response.venues[0].id;
     var totalFoursquareImg = foursquareImg + f_id + foursquareImgSecret;
+    var i = 0;
+    var full = false;
 
-    marker.url = data.response.venues[0].url;
-    marker.facebook = data.response.venues[0].contact.facebook;
-    marker.twitter = data.response.venues[0].contact.twitter;
+    while (i < data.response.venues.length && full === false) {
+      if (data.response.venues[i].url !== undefined) {
+        marker.url = data.response.venues[i].url;
+      }
+
+      if (data.response.venues[i].contact.facebook !== undefined) {
+        marker.facebook = data.response.venues[i].contact.facebook;        
+      }
+
+      if (data.response.venues[i].contact.twitter !== undefined) {
+        marker.twitter = data.response.venues[i].contact.twitter;        
+      }
+
+      if (marker.url !== undefined && marker.facebook !== undefined && marker.twitter !== undefined) {
+        full = true;        
+      }
+
+      i++;
+    }
 
     $.getJSON(totalFoursquareImg, function (dataimg) {
       var u = dataimg.response.photos.items[0].prefix +
-        dataimg.response.photos.items[0].height +
-        dataimg.response.photos.items[0].width +
+        '300x150' +
         dataimg.response.photos.items[0].suffix;
 
       marker.img = u;
@@ -199,10 +216,15 @@ function createInfoWindow(marker, infoWindow) {
   if (infoWindow.marker !== marker) {
 
     infoWindow.marker = marker;
-    infoWindow.setContent('<img class="img_desc" src="' + imageApi + marker.position.lat() + ',' + marker.position.lng() + marker.img_info + '">'
+    infoWindow.setContent('<img class="img_desc" src="' + marker.img + '">'
       + '<hr>'
       + '<strong><p class="center">' + marker.title + '</p></strong>'
       + '<p class="center-small">' + marker.streetAddress + '</p>'
+      + '<p class="center-small">'
+      + '<a href="' + marker.url + '">Website</a> | '
+      + '<a href="www.facebook.com/' + marker.facebook + '">Facebook</a> | '
+      + '<a href="www.twitter.com/' + marker.twitter + '">Twitter</a>'
+      + '</p>'
       + '<p class="just">' + marker.info + '</p>');
     infoWindow.open(map, marker);
     marker.setIcon(highlightedIcon);

@@ -39,6 +39,10 @@ p.center-small {
     font-size: 0.8em;
 }
 
+a {
+    text-decoration: none;
+}
+
 .marker-title {
     font-size: large;
     font-weight: bold;
