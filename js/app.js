@@ -10,6 +10,12 @@ var radius = 50;
 var imageApi = "https://maps.googleapis.com/maps/api/streetview?size=300x150&location=";
 var weatherUrl = "https://api.apixu.com/v1/current.json?key=7cf63c0a2b0e487f838164529171501&q=Sao%20Paulo";
 
+var foursquare = "https://api.foursquare.com/v2/venues/search?ll=";
+var foursquareSecret = "&client_id=N3VSCVOHUML4HPM3GH5NIHECFJ04NUS2I1D1VKH5TLONLLFE&client_secret=0OF5H4Z4M4IBWB0WSLBZ3AVFHKR3ILE3BX13WN2Y2E0CI3ZS&v=20170101";
+
+var foursquareImg = "https://api.foursquare.com/v2/venues/";
+var foursquareImgSecret = "/photos?client_id=N3VSCVOHUML4HPM3GH5NIHECFJ04NUS2I1D1VKH5TLONLLFE&client_secret=0OF5H4Z4M4IBWB0WSLBZ3AVFHKR3ILE3BX13WN2Y2E0CI3ZS&v=20170101";
+
 var w = false;
 
 var defaultIcon;
@@ -148,6 +154,8 @@ function initMarker(locations) {
     bounds.extend(marker.position);
 
     locations[i].googleMarker = marker;
+
+    loadFoursquare(coordinates, marker);
   }
 
 }
@@ -160,7 +168,33 @@ function makeMarkerIcon(color) {
   return markerImage;
 }
 
+function loadFoursquare(coordinates, marker) {
+
+  var totalFoursquare = foursquare + coordinates.lat +
+    ',' + coordinates.lng + foursquareSecret;
+
+  $.getJSON(totalFoursquare, function (data) {
+    var f_id = data.response.venues[0].id;
+    var totalFoursquareImg = foursquareImg + f_id + foursquareImgSecret;
+
+    marker.url = data.response.venues[0].url;
+    marker.facebook = data.response.venues[0].contact.facebook;
+    marker.twitter = data.response.venues[0].contact.twitter;
+
+    $.getJSON(totalFoursquareImg, function (dataimg) {
+      var u = dataimg.response.photos.items[0].prefix +
+        dataimg.response.photos.items[0].height +
+        dataimg.response.photos.items[0].width +
+        dataimg.response.photos.items[0].suffix;
+
+      marker.img = u;
+    });
+  });
+}
+
 function createInfoWindow(marker, infoWindow) {
+
+  console.log(marker);
 
   if (infoWindow.marker !== marker) {
 
@@ -192,6 +226,8 @@ function loadWeather() {
     var body_img = '<div class="weatherBody_img"><p>Condition: </p><img src="http:' + data.current.condition.icon + '" class="weather_img"/></div>';
     var full = title + body + body_img;
     viewModel.weather(full);
+  }).fail(function () {
+    console.log('hahaha');
   });
 
 }
@@ -236,7 +272,6 @@ viewModel.resetMap = function () {
 };
 
 viewModel.showWeather = function () {
-  // var weatherBlock = $('#weatherBlock');  
 
   if (viewModel.weatherText() === '<<') {
     viewModel.weatherText('>>');
