@@ -140,7 +140,7 @@ function initMarker(locations) {
     });
 
     marker.addListener('mouseover', function () {
-      if (infoWind.map !== null || infoWind.map !== undefined) {
+      if (infoWind.map === null || infoWind.map === undefined) {
         this.setIcon(highlightedIcon);
       }
       
