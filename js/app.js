@@ -249,7 +249,7 @@ function loadWeather() {
     var body = '<div class="weatherBody_text"><p>Temp: ' + data.current.feelslike_c + '°C</p>' +
       '<p>Humidity: ' + data.current.humidity + ' %</p></div>';
 
-    var body_img = '<div class="weatherBody_img"><p>Condition: </p><img src="http:' + data.current.condition.icon + '" class="weather_img"/></div>';
+    var body_img = '<div class="weatherBody_img"><p> Condition: <img src="https:' + data.current.condition.icon + '" class="weather_img"/></p></div>';
     var full = title + body + body_img;
     viewModel.weather(full);
   }).fail(function (error) {
@@ -260,7 +260,6 @@ function loadWeather() {
 
 viewModel.query = ko.observable('');
 viewModel.weather = ko.observable();
-viewModel.showWeatherBlock = ko.observable(true);
 viewModel.weatherText = ko.observable('<<');
 
 viewModel.markers = ko.dependentObservable(function () {
@@ -296,7 +295,7 @@ viewModel.clickLocation = function () {
 viewModel.resetMap = function () {
   initMap();
 };
-
+viewModel.showWeatherBlock = ko.observable(false);
 viewModel.showWeather = function () {
 
   if (viewModel.weatherText() === '<<') {

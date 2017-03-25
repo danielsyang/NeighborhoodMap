@@ -28,10 +28,11 @@
   <section id="map-canvas" class="map-canvas"></section>
 
   <div class="weather-container">
-    <div id="weatherBlock" data-bind="visible: showWeatherBlock">
-      <div data-bind="html: weather" class="weather-big"></div>
+
+    <div id="weatherBlock" data-bind="visisble: showWeatherBlock,html: weather" class="weather-big">
     </div>
-    <button id="weather" class="weather-small" data-bind="click: showWeather, text: weatherText" class="weather"></button>
+    
+    <button id="weather" class="weather-small" data-bind="click: showWeather, text: weatherText"></button>
   </div>
 
   <div class="reset-container">
