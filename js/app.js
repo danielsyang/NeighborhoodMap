@@ -1,4 +1,4 @@
-(function() {
+
 'use strict';
 
 var map;
@@ -310,5 +310,4 @@ viewModel.showWeather = function () {
 };
 
 ko.applyBindings(viewModel);
-  
-}());
+ 
