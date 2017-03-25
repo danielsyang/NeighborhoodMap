@@ -6,9 +6,7 @@ var markers = [];
 var infoWind;
 var bounds;
 var streetViewService;
-var radius = 50;
 
-var imageApi = "https://maps.googleapis.com/maps/api/streetview?size=300x150&location=";
 var weatherUrl = "https://api.apixu.com/v1/current.json?key=7cf63c0a2b0e487f838164529171501&q=Sao%20Paulo";
 
 var foursquare = "https://api.foursquare.com/v2/venues/search?ll=";
@@ -146,7 +144,7 @@ function initMarker(locations) {
     });
 
     marker.addListener('mouseout', function () {
-      if (infoWind.map === null || infoWind.map === undefined ) {
+      if (infoWind.map === null || infoWind.map === undefined) {
         this.setIcon(defaultIcon);
       }
     });
@@ -158,6 +156,8 @@ function initMarker(locations) {
 
     loadFoursquare(coordinates, marker);
   }
+
+  map.fitBounds(bounds);
 
 }
 
@@ -221,16 +221,16 @@ function createInfoWindow(marker, infoWindow) {
   if (infoWindow.marker !== marker) {
 
     infoWindow.marker = marker;
-    infoWindow.setContent('<img class="img_desc" src="' + marker.img + '">'
-      + '<hr>'
-      + '<strong><p class="center">' + marker.title + '</p></strong>'
-      + '<p class="center-small">' + marker.streetAddress + '</p>'
-      + '<p class="center-small">'
-      + '<a href="' + marker.url + '">Website</a> | '
-      + '<a href="http://www.facebook.com/' + marker.facebook + '">Facebook</a> | '
-      + '<a href="http://www.twitter.com/' + marker.twitter + '">Twitter</a>'
-      + '</p>'
-      + '<p class="just">' + marker.info + '</p>');
+    infoWindow.setContent('<img class="img_desc" src="' + marker.img + '">' +
+      '<hr>' +
+      '<strong><p class="center">' + marker.title + '</p></strong>' +
+      '<p class="center-small">' + marker.streetAddress + '</p>' +
+      '<p class="center-small">' +
+      '<a href="' + marker.url + '">Website</a> | ' +
+      '<a href="http://www.facebook.com/' + marker.facebook + '">Facebook</a> | ' +
+      '<a href="http://www.twitter.com/' + marker.twitter + '">Twitter</a>' +
+      '</p>' +
+      '<p class="just">' + marker.info + '</p>');
     infoWindow.open(map, marker);
     marker.setIcon(highlightedIcon);
 
@@ -307,12 +307,12 @@ viewModel.showWeather = function () {
     viewModel.showWeatherBlock(true);
   } else {
     viewModel.weatherText('<<');
-    viewModel.showWeatherBlock(false)
+    viewModel.showWeatherBlock(false);
   }
 
 };
 
-viewModel.hideListBLock = function() {  
+viewModel.hideListBLock = function () {
 
   if (viewModel.hideList() === '<<') {
     viewModel.hideList('>>');
@@ -325,4 +325,4 @@ viewModel.hideListBLock = function() {
 };
 
 ko.applyBindings(viewModel);
- 
+

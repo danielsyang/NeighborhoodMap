@@ -23,18 +23,9 @@
 	}
 }
 
-@media screen and (orientation:landscape) {
+@media screen and (max-width: 800px) and (orientation:landscape) {
 	.search-nav {
 		height: 350px;
-	}
-
-	.search-nav,
-	.search_box{		
-		max-width: 300px;
-	}
-
-	li {
-		padding: 0;
 	}
 
 	li > p {
@@ -47,5 +38,9 @@
 	
 	.mobile_button {
 		display: block;
+	}
+
+	.just {
+		display: none;
 	}
 }
