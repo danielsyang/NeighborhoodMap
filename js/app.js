@@ -222,8 +222,8 @@ function createInfoWindow(marker, infoWindow) {
       + '<p class="center-small">' + marker.streetAddress + '</p>'
       + '<p class="center-small">'
       + '<a href="' + marker.url + '">Website</a> | '
-      + '<a href="www.facebook.com/' + marker.facebook + '">Facebook</a> | '
-      + '<a href="www.twitter.com/' + marker.twitter + '">Twitter</a>'
+      + '<a href="http://www.facebook.com/' + marker.facebook + '">Facebook</a> | '
+      + '<a href="http://www.twitter.com/' + marker.twitter + '">Twitter</a>'
       + '</p>'
       + '<p class="just">' + marker.info + '</p>');
     infoWindow.open(map, marker);
