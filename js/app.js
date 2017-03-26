@@ -112,7 +112,7 @@ function initMap() {
 }
 
 function myerrorhandler(error) {
-  alert("Google Maps API couldn't be loaded!);
+  alert("Google Maps API couldn't be loaded!");
   console.log(error);
 }
 
