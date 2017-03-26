@@ -108,6 +108,8 @@ function initMap() {
     loadWeather();
     w = true;
   }
+  
+  console.log('lixeira');
 
 }
 
