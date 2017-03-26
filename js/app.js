@@ -212,11 +212,11 @@ function loadFoursquare(coordinates, marker) {
 
       marker.img = u;
     }).fail(function (error) {
-      alert('FourSquare images failed to load!);
+      alert('FourSquare images failed to load!');
       console.log(error);
     });
   }).fail(function (error) {
-    alert('FourSquare failed to load!);
+    alert('FourSquare failed to load!');
     console.log(error);
   });
 }
