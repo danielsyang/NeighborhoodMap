@@ -111,7 +111,7 @@ function initMap() {
 
 }
 
-function myerrorhandler(error) {
+function myErrorHandler(error) {
   alert("Google Maps API couldn't be loaded!");
   console.log(error);
 }
@@ -142,7 +142,7 @@ function initMarker(locations) {
 
     marker.addListener('mouseover', function () {      
       if (infoWind.map === null || infoWind.map === undefined) {
-        this.setIcon(highlightedIcon);        
+        this.setIcon(highlightedIcon);                
       }
       
     });
@@ -238,6 +238,12 @@ function createInfoWindow(marker, infoWindow) {
     infoWindow.open(map, marker);
     marker.setIcon(highlightedIcon);
 
+    for (var i = 0; i < markers.length; i++) {
+      if (markers[i] !== marker) {
+        markers[i].setIcon(defaultIcon);
+      }      
+    }
+
     infoWindow.addListener('closeclick', function () {
       marker.setIcon(defaultIcon);
     });
@@ -279,14 +285,14 @@ viewModel.markers = ko.dependentObservable(function () {
     if (location.title.toLowerCase().indexOf(search) >= 0) {
 
       if (location.googleMarker !== undefined) {
-        location.googleMarker.setMap(map);
+        location.googleMarker.setVisible(true);        
       }
       return location;
 
     } else {
 
       if (location.googleMarker !== undefined) {
-        location.googleMarker.setMap(null);
+        location.googleMarker.setVisible(false);        
       }
 
     }
