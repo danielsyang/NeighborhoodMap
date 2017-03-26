@@ -112,7 +112,8 @@ function initMap() {
 }
 
 function myerrorhandler(error) {
-  alert("Google Maps API couldn't be loaded! Error:" + error);
+  alert("Google Maps API couldn't be loaded!);
+  console.log(error);
 }
 
 function initMarker(locations) {
@@ -211,16 +212,16 @@ function loadFoursquare(coordinates, marker) {
 
       marker.img = u;
     }).fail(function (error) {
-      alert('FourSquare images failed to load! Error: ' + error);
+      alert('FourSquare images failed to load!);
+      console.log(error);
     });
   }).fail(function (error) {
-    alert('FourSquare failed to load! Error: ' + error);
+    alert('FourSquare failed to load!);
+    console.log(error);
   });
 }
 
 function createInfoWindow(marker, infoWindow) {
-
-  console.log(marker);
 
   if (infoWindow.marker !== marker) {
 
@@ -258,7 +259,8 @@ function loadWeather() {
     var full = title + body + body_img;
     viewModel.weather(full);
   }).fail(function (error) {
-    alert('APIXU Weather failed to load! Error: ' + error);
+    alert('APIXU Weather failed to load!);
+    console.log(error);
   });
 
 }
