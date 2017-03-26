@@ -108,8 +108,7 @@ function initMap() {
     loadWeather();
     w = true;
   }
-  
-  console.log(element[0]);
+
 }
 
 function myerrorhandler(error) {
@@ -141,11 +140,10 @@ function initMarker(locations) {
       createInfoWindow(this, infoWind);
     });
 
-    marker.addListener('mouseover', function () {
-      this.setIcon(highlightedIcon);
-//       if (infoWind.map === null || infoWind.map === undefined) {
-        
-//       }
+    marker.addListener('mouseover', function () {      
+      if (infoWind.map === null || infoWind.map === undefined) {
+        this.setIcon(highlightedIcon);        
+      }
       
     });
 
