@@ -109,8 +109,7 @@ function initMap() {
     w = true;
   }
   
-  console.log('lixeira');
-
+  console.log(element[0]);
 }
 
 function myerrorhandler(error) {
