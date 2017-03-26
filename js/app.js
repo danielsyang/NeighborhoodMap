@@ -140,11 +140,24 @@ function initMarker(locations) {
       createInfoWindow(this, infoWind);
     });
 
-    marker.addListener('mouseover', function () {      
-      if (infoWind.map === null || infoWind.map === undefined) {
-        this.setIcon(highlightedIcon);                
+    marker.addListener('click', function () {
+      var m = this;
+      if (this.getAnimation() !== null) {
+        this.setAnimation(null);
+      } else {
+        this.setAnimation(google.maps.Animation.BOUNCE);
+
+        setTimeout(function () {
+          m.setAnimation(null)
+        }, 750);
+
       }
-      
+    });
+
+    marker.addListener('mouseover', function () {
+      if (infoWind.map === null || infoWind.map === undefined) {
+        this.setIcon(highlightedIcon);
+      }
     });
 
     marker.addListener('mouseout', function () {
@@ -241,7 +254,7 @@ function createInfoWindow(marker, infoWindow) {
     for (var i = 0; i < markers.length; i++) {
       if (markers[i] !== marker) {
         markers[i].setIcon(defaultIcon);
-      }      
+      }
     }
 
     infoWindow.addListener('closeclick', function () {
@@ -285,14 +298,14 @@ viewModel.markers = ko.dependentObservable(function () {
     if (location.title.toLowerCase().indexOf(search) >= 0) {
 
       if (location.googleMarker !== undefined) {
-        location.googleMarker.setVisible(true);        
+        location.googleMarker.setVisible(true);
       }
       return location;
 
     } else {
 
       if (location.googleMarker !== undefined) {
-        location.googleMarker.setVisible(false);        
+        location.googleMarker.setVisible(false);
       }
 
     }
