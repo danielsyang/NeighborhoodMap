@@ -111,8 +111,8 @@ function initMap() {
 
 }
 
-function myerrorhandler() {
-  alert("Google Maps API couldn't be loaded!");
+function myerrorhandler(error) {
+  alert("Google Maps API couldn't be loaded! Error:" + error);
 }
 
 function initMarker(locations) {
