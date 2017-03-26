@@ -259,7 +259,7 @@ function loadWeather() {
     var full = title + body + body_img;
     viewModel.weather(full);
   }).fail(function (error) {
-    alert('APIXU Weather failed to load!);
+    alert('APIXU Weather failed to load!');
     console.log(error);
   });
 
